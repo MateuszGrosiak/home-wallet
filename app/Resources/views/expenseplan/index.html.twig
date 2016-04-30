@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ExpensePlan list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Note</th>
+                <th>Value</th>
+                <th>Status</th>
+                <th>Start</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for expensePlan in expensePlans %}
+            <tr>
+                <td><a href="{{ path('expenseplan_show', { 'id': expensePlan.id }) }}">{{ expensePlan.id }}</a></td>
+                <td>{{ expensePlan.title }}</td>
+                <td>{{ expensePlan.note }}</td>
+                <td>{{ expensePlan.value }}</td>
+                <td>{{ expensePlan.status }}</td>
+                <td>{{ expensePlan.start }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('expenseplan_show', { 'id': expensePlan.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('expenseplan_edit', { 'id': expensePlan.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('expenseplan_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
